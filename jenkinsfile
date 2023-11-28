@@ -1,0 +1,22 @@
+pipeline {
+   agent any
+       stage('Print Directory') {
+           steps {
+               // Print current working directory
+               sh 'pwd'
+           }
+       }
+       stage('Snyk Test') {
+           environment {
+               SNYK_TOKEN = credentials('SNYK_TOKEN')
+           }
+           steps {
+               // Change directory to your cloned repo
+               dir('your-dir') {
+                   // Run Snyk tests on your project
+                   sh 'snyk test'
+               }
+           }
+       }
+   }
+}
