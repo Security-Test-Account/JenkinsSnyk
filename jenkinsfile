@@ -13,7 +13,7 @@ pipeline {
            }
            steps {
                // Change directory to your cloned repo
-               dir('your-dir') {
+               dir('/var/lib/jenkins/workspace/Snyk') {
                    // Run Snyk tests on your project
                    sh 'snyk test'
                }
