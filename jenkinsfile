@@ -1,22 +1,24 @@
 pipeline {
    agent any
       stages{
+       stage('Checkout') {
+                 steps {
+                     // Checkout the source code from GitHub
+                     git 'https://github.com/Security-Test-Account/JenkinsSnyk.git'
+                 }
+             }
        stage('Print Directory') {
            steps {
                // Print current working directory
                sh 'pwd'
            }
        }
-       stage('Snyk Test') {
-           environment {
-               SNYK_TOKEN = credentials('SNYK_TOKEN')
-           }
+      stage('Build and Snyk Test') {
            steps {
-               // Change directory to your cloned repo
-               dir('your-dir') {
-                   // Run Snyk tests on your project
-                   sh 'snyk test'
-               }
+               // Run Maven build
+               sh 'mvn clean package'
+               // Run Snyk tests during the build
+               sh 'snyk test'
            }
        }
    }
