@@ -2,7 +2,9 @@ pipeline {
    agent any
    stages{
        stage('Checkout') {
-         git branch: 'main', url: 'https://github.com/Security-Test-Account/JenkinsSnyk.git'      
+         steps {
+            git branch: 'main', url: 'https://github.com/Security-Test-Account/JenkinsSnyk.git'   
+         }
       }
        stage('Print Directory') {
            steps {
