@@ -20,7 +20,7 @@ pipeline {
                // Change directory to your cloned repo
                dir('/var/lib/jenkins/workspace/Snyk Integration') {
                    // Run Snyk tests on your project
-                   sh 'snyk code test'
+                   sh 'snyk code test --org=4061bd3a-3b71-4154-b76c-38d175334641'
                }
            }
        }
